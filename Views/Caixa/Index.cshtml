@@ -1,0 +1,117 @@
+﻿@model IEnumerable<WebAppEdson.Models.Caixa>
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Index";
+    string style = "";
+    double entrada = 0;
+    double saida = 0;
+    double saldo = 0;
+    CultureInfo br = new CultureInfo("pt-BR");
+
+}
+
+<h1>Caixa Lançamentos</h1>
+
+<p>
+    <a asp-action="Create">+ Incluir Lançamento</a>
+</p>
+
+<div class="jumbotron" style="padding: 1rem 2rem;">
+    <form method="GET" asp-action="Index">
+
+        <input type="search" placeholder="Digite sua Pesquisa" value="@ViewData["Caixa"]" name="busca" style="width:300px;" />
+        <input type="submit" value="Busca" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Mostrar Todos</a>
+        <a asp-action="RotativaPDF" target='_blank' class="btn btn-success">Gerar PDF</a>
+
+
+    </form>
+</div>
+
+<table class="table  table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            @if (item.Tipo == "CREDITO")
+            {
+                style = "color: green";
+                entrada = entrada + item.Valor;
+            }
+            else
+            {
+                style = "color: red";
+                saida = saida + item.Valor;
+            }
+
+
+            <tr style="@style">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data, "{ 0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Forma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detales</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<hr />
+<div class="jumbotron" style="padding: 1rem 2rem;">
+    <table>
+        <tr>
+            <td style="color:green">
+                <h4>Entrada: (+) @entrada.ToString("N2")</h4>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="color:red;">
+                <h4>Saida: (-) @saida.ToString("N2")</h4>
+            </td>
+        </tr>
+        @{
+            saldo = (entrada - saida);
+        }
+        <tr>
+            <td style="color:black;">
+                <h4>Saldo: (=) @saldo.ToString("N2")</h4>
+            </td>
+        </tr>
+    </table>
+</div>

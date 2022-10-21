@@ -1,0 +1,14 @@
+﻿@using System.Security.Claims;
+@{
+    var userId = this.User.FindFirstValue(ClaimTypes.Name);
+
+}
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bem Vindo ao Fluxo de Caixa</h1>
+    <p>Visite <a href="https://github.com/edsonaraujo1/Teste_Entrevista_Fluxo_Caixa" target="_blank">Projeto completo no GitHub - ASP.NET Core</a>.</p>
+    <p>Para Informações de login entre: <a href="https://github.com/edsonaraujo1/Teste_Entrevista_Fluxo_Caixa#readme" target="_blank">aqui</a></p>
+</div>

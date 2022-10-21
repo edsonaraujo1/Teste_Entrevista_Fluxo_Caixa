@@ -1,0 +1,9 @@
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.csproj.AssemblyReference.cache
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.GeneratedMSBuildEditorConfig.editorconfig
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.AssemblyInfoInputs.cache
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.AssemblyInfo.cs
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.csproj.CoreCompileInputs.cache
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.MvcApplicationPartsAssemblyInfo.cs
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.MvcApplicationPartsAssemblyInfo.cache
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.RazorAssemblyInfo.cache
+D:\BACKUP_DRIVE_E\Desenv5\WebAppEdson\WebAppEdson\obj\Release\netcoreapp3.0\WebAppEdson.RazorAssemblyInfo.cs

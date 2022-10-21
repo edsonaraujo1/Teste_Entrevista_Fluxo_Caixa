@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebAppEdson.Models.Caixa>
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Index";
+    string style = "";
+    double entrada = 0;
+    double saida = 0;
+    double saldo = 0;
+}
+
+<h1>Relatório de Fluxo de Caixa</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            @if (item.Tipo == "CREDITO")
+            {
+                style = "color: green";
+                entrada = entrada + item.Valor;
+            }
+            else
+            {
+                style = "color: red";
+                saida = saida + item.Valor;
+            }
+
+
+        <tr style="@style">
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
+<hr />
+<div>
+    <table>
+        <tr>
+            <td style="color:green">
+                Entrada: (+) @entrada.ToString("N2")
+            </td>
+
+        </tr>
+        <tr>
+            <td style="color:red;">
+                Saida: (-) @saida.ToString("N2")
+            </td>
+        </tr>
+        @{
+            saldo = (saida - entrada);
+        }
+        <tr>
+            <td style="color:black;">
+                Saldo: (=) @saldo.ToString("N2")
+            </td>
+        </tr>
+    </table>
+</div>
