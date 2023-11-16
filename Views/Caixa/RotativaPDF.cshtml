@@ -8,95 +8,116 @@
     double saida = 0;
     double saldo = 0;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fluxo Caixa</title>
 
-<h1>Relatório de Fluxo de Caixa</h1>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <h1>Relatório de Fluxo de Caixa</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Data)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Forma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-
-            @if (item.Tipo == "CREDITO")
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Forma)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                style = "color: green";
-                entrada = entrada + item.Valor;
+
+                @if (item.Tipo == "CREDITO")
+                {
+                    style = "color: green";
+                    entrada = entrada + item.Valor;
+                }
+                else
+                {
+                    style = "color: red";
+                    saida = saida + item.Valor;
+                }
+
+
+                <tr style="@style">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Data)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Forma)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </td>
+
+                </tr>
             }
-            else
-            {
-                style = "color: red";
-                saida = saida + item.Valor;
-            }
 
-
-        <tr style="@style">
-            <td>
-                @Html.DisplayFor(modelItem => item.Data)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Forma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-
-        </tr>
-        }
-
-    </tbody>
-</table>
-<hr />
-<div>
-    <table>
-        <tr>
-            <td style="color:green">
-                Entrada: (+) @entrada.ToString("N2")
-            </td>
-
-        </tr>
-        <tr>
-            <td style="color:red;">
-                Saida: (-) @saida.ToString("N2")
-            </td>
-        </tr>
-        @{
-            saldo = (saida - entrada);
-        }
-        <tr>
-            <td style="color:black;">
-                Saldo: (=) @saldo.ToString("N2")
-            </td>
-        </tr>
+        </tbody>
     </table>
-</div>
+    <hr />
+    <div>
+        <table>
+            <tr>
+                <td style="color:green">
+                    Entrada: (+) @entrada.ToString("N2")
+                </td>
+
+            </tr>
+            <tr>
+                <td style="color:red;">
+                    Saida: (-) @saida.ToString("N2")
+                </td>
+            </tr>
+            @{
+                saldo = (saida - entrada);
+            }
+            <tr>
+                <td style="color:black;">
+                    Saldo: (=) @saldo.ToString("N2")
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

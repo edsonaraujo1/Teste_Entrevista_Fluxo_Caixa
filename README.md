@@ -1,6 +1,6 @@
 # Sistema Simples Fluxo Caixa
 Sistema desenvolvido por Edson de Araujo
-Cadastro Simples com ASP.NET CORE 3.0 C# para entrevistas
+Cadastro Simples com ASP.NET CORE 2.2 C# com EntityFramework para entrevistas
 
 # Modo de Instalção e Utilização
 
